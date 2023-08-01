@@ -1,16 +1,34 @@
 <template>
     <nav class="navbar navbar-expand bg-thing-blue">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex flex-wrap">
             <div class="navbar-logo">
-                <a href="#" class="navbar-brand">UltiMaker Thingiverse</a>
+                <a href="#" class="navbar-brand">
+                    <!-- UltiMaker Thingiverse -->
+                    <img
+                        src="../assets/ultimaker-thingiverse-logo.png"
+                        alt=""
+                    />
+                </a>
             </div>
-            <div class="navbar-search">
-                <input type="search" name="" id="" />
+            <div class="navbar-search input-group flex-grow-1">
+                <span
+                    class="input-group-text bg-thing-dark-blue text-light border-0 rounded-start-1"
+                >
+                    <font-awesome-icon
+                        icon="fa-solid fa-magnifying-glass"
+                        flip="horizontal"
+                    />
+                </span>
+                <input
+                    type="text"
+                    class="form-control bg-thing-dark-blue border-0 text-light rounded-end-1"
+                    placeholder="Search Thingiverse"
+                />
             </div>
-            <div class="navbar-content">
-                <ul class="navbar-nav me-auto mb-0">
+            <div class="navbar-content ms-4">
+                <ul class="navbar-nav me-auto mb-0 d-flex space-between">
                     <div>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ms-0">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -38,12 +56,12 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item">
+                        <li class="nav-item ms-0">
                             <a href="#" class="nav-link p-0">Education</a>
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown ms-0">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -66,8 +84,11 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link p-0 bg-white text-thing-blue">
+                        <li class="nav-item exclamation ms-0">
+                            <a
+                                href="#"
+                                class="nav-link py-0 bg-white text-thing-blue"
+                            >
                                 <font-awesome-icon
                                     icon="fa-solid fa-exclamation"
                                 />
@@ -75,7 +96,7 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item dropdown d-inline-block">
+                        <li class="nav-item dropdown d-inline-block ms-0">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -153,27 +174,71 @@ export default {
 <style lang="scss">
 .navbar {
     .navbar-brand,
-    .navbar-content a{
+    .navbar-content a,
+    .navbar-search input::placeholder {
         color: #fff;
     }
 
-    .navbar-content {
-        .nav-item {
-            .show {
-                color: #fff;
-            }
+    .navbar-search {
+        &.input-group {
+            width: 35% !important;
 
-            a{
-                font-size: .9rem;
-            }
+            input[type="text"] {
+                border: none !important;
+                outline: none !important;
 
-            .dropdown-menu {
-                border: 1px solid var(--thing-blue);
-                border-radius: 0;
-                a {
-                    color: var(--thing-blue);
+                :focus {
+                    outline: none !important;
                 }
             }
+        }
+    }
+
+    .navbar-content {
+        .navbar-nav {
+            .nav-item {
+                .show {
+                    color: #fff;
+                }
+
+                &.exclamation a {
+                    padding: 0 0.7rem;
+                    border-radius: 2px;
+                }
+
+                a {
+                    font-size: 0.9rem;
+                }
+
+                .dropdown-menu {
+                    border: 1px solid var(--thing-blue);
+                    border-radius: 0;
+                    a {
+                        color: var(--thing-blue);
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1025px) {
+        .navbar-logo {
+            .navbar-brand {
+                flex: 0 0 300px;
+            }
+        }
+
+        .navbar-search {
+            max-width: 625px;
+            flex-grow: 1;
+        }
+    }
+
+    @media (max-width: 879px) {
+        .navbar-search {
+            margin-top: 7px;
+            order: 3;
+            flex-grow: 1;
         }
     }
 }

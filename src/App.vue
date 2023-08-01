@@ -29,9 +29,12 @@ export default {
 .bg-thing-blue{
   background: #196ef0;
 }
+.bg-thing-dark-blue{
+  background: #10469c !important;
+}
 
 .text-thing-blue{
-  color: #196ef0;
+  color: #196ef0 !important;
 }
 
 #app {
