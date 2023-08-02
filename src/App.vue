@@ -1,19 +1,19 @@
 <template>
     <ThingHeader />
-    <ThingCard />
+    <HomePage />
     <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import ThingCard from "./components/ThingCard.vue";
+import HomePage from "./components/HomePage.vue";
 import ThingHeader from "./components/Layout/ThingHeader.vue";
 
 export default {
     name: "App",
     components: {
         HelloWorld,
-        ThingCard,
+        HomePage,
         ThingHeader,
     },
 };

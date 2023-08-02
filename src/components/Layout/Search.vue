@@ -1,7 +1,3 @@
-<script>
-export default {};
-</script>
-
 <template>
     <div class="navbar-search input-group flex-grow-1">
         <span
