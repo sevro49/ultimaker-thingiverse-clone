@@ -28,7 +28,7 @@
             <div class="navbar-content ms-4">
                 <ul class="navbar-nav me-auto mb-0 d-flex space-between">
                     <div>
-                        <li class="nav-item dropdown ms-0">
+                        <li class="nav-item dropdown ms-2">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -56,12 +56,12 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item ms-0">
+                        <li class="nav-item ms-2">
                             <a href="#" class="nav-link p-0">Education</a>
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item dropdown ms-0">
+                        <li class="nav-item dropdown ms-2">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -84,7 +84,7 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item exclamation ms-0">
+                        <li class="nav-item exclamation ms-2">
                             <a
                                 href="#"
                                 class="nav-link py-0 bg-white text-thing-blue"
@@ -96,7 +96,7 @@
                         </li>
                     </div>
                     <div>
-                        <li class="nav-item dropdown d-inline-block ms-0">
+                        <li class="nav-item dropdown d-inline-block ms-2">
                             <a
                                 href="#"
                                 class="nav-link p-0"
@@ -241,5 +241,11 @@ export default {
             flex-grow: 1;
         }
     }
+}
+
+.layout-wrapper {
+}
+.layout {
+    max-width: 1580px;
 }
 </style>
