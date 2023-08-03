@@ -108,7 +108,7 @@ class=""
     }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 960px) {
     .search-control {
         grid-template-columns: repeat(
             2,
