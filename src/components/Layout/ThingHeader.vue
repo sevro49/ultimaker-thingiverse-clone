@@ -10,7 +10,7 @@ export default {
 
 <template>
     <nav class="navbar navbar-expand bg-thing-blue">
-        <div class="container-fluid d-flex flex-wrap">
+        <div class="inner-navbar container-fluid d-flex flex-wrap">
             <!-- Navbar Logo -->
             <Logo />
 
@@ -44,16 +44,31 @@ export default {
         }
     }
 
-    @media (max-width: 879px) {
+    @media (max-width: 861px) {
         .navbar-search {
-            margin-top: 7px;
+            margin-top: 10px;
             order: 3;
             flex-grow: 1;
+        }
+
+        
+    }
+    
+    @media (max-width: 577px){
+        // .inner-navbar{
+        //     flex-direction: column;
+
+        // }
+        
+        .navbar-content{
+            margin-left: 0;
+            // margin-top: 10px;
+        }
+
+        .navbar-search{
+            min-width: 300px;
         }
     }
 }
 
-.layout {
-    max-width: 1580px;
-}
 </style>

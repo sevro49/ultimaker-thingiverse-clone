@@ -77,7 +77,7 @@ export default {
 </script>
 
 <template>
-    <div class="navbar-content ms-4">
+    <div class="navbar-content">
         <div class="dropdown-links">
             <ul class="navbar-nav me-auto mb-0 d-flex space-between">
                 <div>
@@ -126,8 +126,9 @@ export default {
                             href="#"
                             class="nav-link p-0"
                             data-bs-toggle="dropdown"
-                        >
-                            <font-awesome-icon icon="fa-solid fa-angle-down" />
+                        >   
+                        
+                            <!-- <font-awesome-icon icon="fa-solid fa-angle-down" /> -->
                             <font-awesome-icon icon="fa-solid fa-user" />
                         </a>
 
@@ -142,6 +143,7 @@ export default {
 
 <style lang="scss">
 .navbar-content {
+    margin-left: 24px;
     .navbar-nav {
         .nav-item {
             .show {

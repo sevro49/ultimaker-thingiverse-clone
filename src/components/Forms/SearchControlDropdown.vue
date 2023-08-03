@@ -16,13 +16,19 @@ export default {
 </script>
 
 <template>
-    <div class="mx-3 d-block">
+    <div class="search-control d-block bg-white">
         <button
             class="btn btn-white rounded-0 btn-search-control"
             @click="toggleModal"
         >
             <span> Popular Last 30 Days </span>
-            <font-awesome-icon icon="fa-solid fa-chevron-down" />
+            <template v-if="!showDropdown">
+                <font-awesome-icon icon="fa-solid fa-chevron-down" key="1" />
+            </template>
+
+            <template v-else>
+                <font-awesome-icon icon="fa-solid fa-chevron-up" key="2" />
+            </template>
         </button>
 
         <div
@@ -39,20 +45,23 @@ export default {
 </template>
 
 <style lang="scss">
-.search-control-dropdown{
-    border: 1px solid var(--thing-blue);
+.search-control {
+    gap: 20px;
+    .search-control-dropdown {
+        border: 1px solid var(--thing-blue);
 
-    .dropdown-items {
-        display: flex;
-        flex-direction: column;
-        z-index: 1000;
+        .dropdown-items {
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
 
-        a{
-            color: #333;
-            text-decoration: none;
+            a {
+                color: #333;
+                text-decoration: none;
 
-            &:hover{
-                color: var(--thing-blue);
+                &:hover {
+                    color: var(--thing-blue);
+                }
             }
         }
     }
