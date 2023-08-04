@@ -10,6 +10,7 @@ export default {
 <template>
     <div class="search-result my-3 d-grid align-items-center flex-wrap justify-content-center">
         <ThingCard />
+        <!-- <ThingCard />
         <ThingCard />
         <ThingCard />
         <ThingCard />
@@ -25,8 +26,7 @@ export default {
         <ThingCard />
         <ThingCard />
         <ThingCard />
-        <ThingCard />
-        <ThingCard />
+        <ThingCard /> -->
     </div>
     <Pagination />
     <Social />

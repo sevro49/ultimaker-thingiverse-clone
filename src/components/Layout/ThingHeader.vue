@@ -45,6 +45,10 @@ export default {
     }
 
     @media (max-width: 861px) {
+        .navbar-content{
+            margin-top: 10px;
+        }
+
         .navbar-search {
             margin-top: 10px;
             order: 3;
@@ -55,16 +59,17 @@ export default {
     }
     
     @media (max-width: 577px){
-        // .inner-navbar{
-        //     flex-direction: column;
 
-        // }
-        
         .navbar-content{
             margin-left: 0;
-            // margin-top: 10px;
         }
 
+        .navbar-search{
+            min-width: 300px;
+        }
+    }
+
+    @media (max-width: 344px){
         .navbar-search{
             min-width: 300px;
         }

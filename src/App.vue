@@ -1,17 +1,21 @@
 <template>
     <ThingHeader />
     <HomePage />
+    <!-- <TitleList /> -->
+
 </template>
 
 <script>
 import HomePage from "./components/HomePage.vue";
 import ThingHeader from "./components/Layout/ThingHeader.vue";
+// import TitleList from "./components/API/TitleList.vue";
 
 export default {
     name: "App",
     components: {
         HomePage,
         ThingHeader,
+        // TitleList,
     },
 };
 </script>

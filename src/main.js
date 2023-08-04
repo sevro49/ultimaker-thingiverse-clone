@@ -16,5 +16,5 @@ library.add(far);
 const app = createApp(App);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
-app.component( "Dropdown", Dropdown);
+app.component("Dropdown", Dropdown);
 app.mount("#app");
