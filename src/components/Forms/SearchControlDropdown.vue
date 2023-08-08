@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-    <div class="search-control d-block bg-white">
+    <div class="search-control-sort d-block bg-white">
         <button
             class="btn btn-white rounded-0 btn-search-control"
             @click="toggleModal"
@@ -45,23 +45,24 @@ export default {
 </template>
 
 <style lang="scss">
-.search-control {
-    gap: 20px;
-    .search-control-dropdown {
-        border: 1px solid var(--thing-blue);
+.search-control-dropdown {
+    border: 1px solid var(--thing-blue);
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .dropdown-items {
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
+    .dropdown-items {
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
 
-            a {
-                color: #333;
-                text-decoration: none;
+        a {
+            color: #333;
+            text-decoration: none;
 
-                &:hover {
-                    color: var(--thing-blue);
-                }
+            &:hover {
+                color: var(--thing-blue);
             }
         }
     }

@@ -84,7 +84,7 @@ export default {
     },
 };
 </script>
-class=""
+
 <template>
     <div class="search-control d-grid justify-content-center flex-nowrap">
         <SearchControlDropdown :list="sortLinks" />
@@ -99,13 +99,9 @@ class=""
         3,
         minmax(300px, max-content)
     ) !important;
+    gap: 20px;
 
-    .btn-search-control {
-        width: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+    
 }
 
 @media (max-width: 960px) {
