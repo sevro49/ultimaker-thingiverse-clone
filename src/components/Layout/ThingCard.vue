@@ -5,7 +5,7 @@ import axios from "axios";
 export default {
     data() {
         return {
-            isLiked: false,
+            isLiked: [],
             isShared: false,
             things: [],
         };
@@ -20,8 +20,21 @@ export default {
     },
 
     methods: {
-        toggleLike() {
-            this.isLiked = !this.isLiked;
+        // Toggle like for a specific thing ID
+        toggleLike(thingId) {
+            const item = this.isLiked.find((item) => item.id === thingId);
+            if (item) {
+                item.value = !item.value;
+            } else {
+                // If the item doesn't exist in the array, add it
+                this.isLiked.push({ id: thingId, value: true });
+            }
+        },
+
+        // Check if a specific thing is liked
+        isLikedMethod(thingId) {
+            const item = this.isLiked.find((item) => item.id === thingId);
+            return item ? item.value : false;
         },
 
         toggleShare() {
@@ -91,9 +104,9 @@ export default {
                         <a
                             href="javascript:void(0);"
                             class="contentItem text-muted text-decoration-none"
-                            @click="toggleLike"
+                            @click="toggleLike(thing.id)"
                         >
-                            <template v-if="!isLiked">
+                            <template v-if="!isLikedMethod(thing.id)">
                                 <font-awesome-icon icon="fa-regular fa-heart" />
                                 111
                             </template>
