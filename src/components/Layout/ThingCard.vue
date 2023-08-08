@@ -59,6 +59,7 @@ export default {
                             id: item.creator.id,
                             name: item.creator.name,
                             thumbnail: item.creator.thumbnail,
+                            public_url: item.creator.public_url,
                         },
                     }));
                 })
@@ -76,7 +77,7 @@ export default {
         <div
             class="thing-card__header d-flex py-2 px-3 align-items-center bg-white overflow-hidden"
         >
-            <a href="" class="thing-card__headerAvatar me-3">
+            <a :href="thing.creator.public_url" class="thing-card__headerAvatar me-3">
                 <!-- <font-awesome-icon icon="fa-solid fa-user" /> -->
                 <img :src="thing.creator.thumbnail" alt="">
             </a>
