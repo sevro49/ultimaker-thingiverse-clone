@@ -52,8 +52,14 @@ export default {
                     this.things = response.data.map((item) => ({
                         id: item.id,
                         name: item.name,
-                        thumbnail: item.thumbnail, // URL for the thing's thumbnail image
-                        // Add more properties as needed, e.g., description, likes, etc.
+                        thumbnail: item.thumbnail,
+                        public_url: item.public_url,
+                        like_count: item.like_count,
+                        creator: {
+                            id: item.creator.id,
+                            name: item.creator.name,
+                            thumbnail: item.creator.thumbnail,
+                        },
                     }));
                 })
                 .catch((error) => {
@@ -71,15 +77,16 @@ export default {
             class="thing-card__header d-flex py-2 px-3 align-items-center bg-white overflow-hidden"
         >
             <a href="" class="thing-card__headerAvatar me-3">
-                <font-awesome-icon icon="fa-solid fa-user" />
+                <!-- <font-awesome-icon icon="fa-solid fa-user" /> -->
+                <img :src="thing.creator.thumbnail" alt="">
             </a>
-            <a href="" class="text-decoration-none">
+            <a :href="thing.public_url" class="text-decoration-none">
                 <span class="thing-card__headerTitle text-muted">
                     {{ thing.name }}
                 </span>
             </a>
         </div>
-        <a href="" class="thing-card__bodyWrapper">
+        <a :href="thing.public_url" class="thing-card__bodyWrapper">
             <img :src="thing.thumbnail" alt="make card" />
         </a>
         <div
@@ -108,10 +115,11 @@ export default {
                         >
                             <template v-if="!isLikedMethod(thing.id)">
                                 <font-awesome-icon icon="fa-regular fa-heart" />
-                                111
+                                {{ thing.like_count }}
                             </template>
                             <template v-else>
                                 <font-awesome-icon icon="fa-solid fa-heart" />
+                                {{ thing.like_count + 1 }}
                             </template>
                         </a>
                     </div>
@@ -153,6 +161,13 @@ export default {
         &__header {
             // height: 40px;
             // width: 300px;
+
+            &Avatar{
+                img{
+                    width: 30px;
+                    border-radius: 50%;
+                }
+            }
 
             a:nth-child(2) {
                 overflow: hidden;
