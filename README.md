@@ -1,4 +1,5 @@
 # ultimaker-thingiverse-clone
+Live Preview: https://thingiverse-clone.netlify.app
 
 ## Project setup
 ```
