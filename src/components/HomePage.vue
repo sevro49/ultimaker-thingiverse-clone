@@ -1,11 +1,13 @@
 <script>
 import SearchControl from "./Layout/SearchControl.vue";
 import HomePageContent from "./Layout/HomePageContent.vue";
+import BacktoTop from "./Layout/BacktoTop.vue";
 
 export default {
     components: {
         SearchControl,
         HomePageContent,
+        BacktoTop,
     },
 };
 </script>
@@ -17,6 +19,8 @@ export default {
                 <SearchControl />
 
                 <HomePageContent />
+
+                <BacktoTop />
             </div>
         </div>
     </div>

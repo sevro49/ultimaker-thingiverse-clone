@@ -16,21 +16,18 @@ export default {
 </script>
 
 <template>
-    <div class="search-control-sort d-block bg-white">
+    <div class="search-control-sort d-block bg-white" @click="toggleModal" @mouseleave="showDropdown = false">
         <button
-            class="btn btn-white rounded-0 btn-search-control"
-            @click="toggleModal"
+            class="btn btn-white rounded-0 btn-search-control w-100"
         >
             <span> Popular Last 30 Days </span>
             <template v-if="!showDropdown">
                 <font-awesome-icon icon="fa-solid fa-chevron-down" key="1" />
             </template>
-
             <template v-else>
                 <font-awesome-icon icon="fa-solid fa-chevron-up" key="2" />
             </template>
         </button>
-
         <div
             v-if="showDropdown"
             class="search-control-dropdown btn-search-control position-absolute bg-white p-3"

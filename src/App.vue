@@ -23,6 +23,7 @@ export default {
 <style>
 :root {
     --thing-blue: #196ef0;
+    --thing-dark-blue: #10469c;
 }
 
 .bg-thing-blue {
