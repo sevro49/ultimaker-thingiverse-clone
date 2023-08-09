@@ -8,17 +8,17 @@ export default {};
             class="social-icons d-flex align-items-center justify-content-center flex-column"
         >
             <a href="https://www.facebook.com/" target="blank">
-                <button>
+                <button class="facebook">
                     <font-awesome-icon icon="fa-brands fa-facebook-f" />
                 </button>
             </a>
             <a href="https://twitter.com/" target="blank">
-                <button>
+                <button class="twitter">
                     <font-awesome-icon icon="fa-brands fa-twitter" />
                 </button>
             </a>
             <a href="https://web.whatsapp.com/" target="blank">
-                <button>
+                <button class="whatsapp">
                     <font-awesome-icon icon="fa-brands fa-whatsapp" />
                 </button>
             </a>
@@ -45,15 +45,7 @@ export default {};
             height: 40px;
             width: 40px;
 
-            a {
-                color: #333;
-            }
-
-            // &:hover {
-            //     background: red;
-            // }
-
-            &:nth-child(1):hover {
+            &.facebook:hover {
                 color: #fff;
                 background: rgb(17, 120, 242);
                 background: linear-gradient(
@@ -63,7 +55,7 @@ export default {};
                 );
             }
 
-            &:nth-child(2):hover {
+            &.twitter:hover {
                 color: #fff;
                 background: rgb(51, 169, 244);
                 background: linear-gradient(
@@ -73,7 +65,7 @@ export default {};
                 );
             }
 
-            &:nth-child(3):hover {
+            &.whatsapp:hover {
                 color: #fff;
                 background: rgb(13, 219, 80);
                 background: linear-gradient(

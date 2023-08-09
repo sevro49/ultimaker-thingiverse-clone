@@ -2,21 +2,37 @@
 // import TitleList from "../API/TitleList.vue";
 import axios from "axios";
 
+import VPagination from "@hennge/vue3-pagination";
+
 export default {
     data() {
         return {
             isLiked: [],
             isShared: false,
             things: [],
+            startIndex: 0,
+            numberOfCards: 9,
+            endIndex: 0,
+            page: 1,
         };
     },
 
-    // components: {
-    //     TitleList,
-    // },
+    components: {
+        VPagination,
+    },
 
+    computed: {
+        filteredThings() {
+            return this.things.slice(this.startIndex, this.endIndex);
+        },
+
+        pageCount() {
+            return Math.ceil(this.things.length / this.numberOfCards);
+        },
+    },
     mounted() {
         this.fetchThings();
+        this.endIndex = this.numberOfCards;
     },
 
     methods: {
@@ -67,82 +83,109 @@ export default {
                     console.error("Error fetching things:", error);
                 });
         },
+
+        updateHandler(page) {
+            this.startIndex = this.numberOfCards * page - this.numberOfCards;
+            this.endIndex = this.numberOfCards * page;
+        },
     },
 };
 </script>
 
 <template>
-    <div class="thing-card shadow" v-for="thing in things" :key="thing.id">
-        <div class="share-popUp"></div>
+    <div
+        class="search-result my-3 d-grid align-items-center flex-wrap justify-content-center"
+    >
         <div
-            class="thing-card__header d-flex py-2 px-3 align-items-center bg-white overflow-hidden"
+            class="thing-card shadow"
+            v-for="thing in filteredThings"
+            :key="thing.id"
         >
-            <a :href="thing.creator.public_url" class="thing-card__headerAvatar me-3">
-                <!-- <font-awesome-icon icon="fa-solid fa-user" /> -->
-                <img :src="thing.creator.thumbnail" alt="">
-            </a>
-            <a :href="thing.public_url" class="text-decoration-none">
-                <span class="thing-card__headerTitle text-muted">
-                    {{ thing.name }}
-                </span>
-            </a>
-        </div>
-        <a :href="thing.public_url" class="thing-card__bodyWrapper">
-            <img :src="thing.thumbnail" alt="make card" />
-        </a>
-        <div
-            class="thing-card__actions bg-white d-flex align-items-center bg-white"
-        >
-            <div class="thing-card__actionsLeftContainer p-0 col-8">
-                <div class="item-container">
-                    <a
-                        href="javascript:void(0);"
-                        class="text-decoration-none text-muted"
-                    >
-                        <font-awesome-icon icon="fa-solid fa-plus" />
-                        Collect Thing
-                    </a>
-                </div>
-            </div>
+            <div class="share-popUp"></div>
             <div
-                class="thing-card__actionsRightContainer p-0 col-4 border-start"
+                class="thing-card__header d-flex py-2 px-3 align-items-center bg-white overflow-hidden"
             >
-                <div class="border-bottom">
-                    <div class="item-container py-2">
+                <a
+                    :href="thing.creator.public_url"
+                    class="thing-card__headerAvatar me-3"
+                >
+                    <!-- <font-awesome-icon icon="fa-solid fa-user" /> -->
+                    <img :src="thing.creator.thumbnail" alt="" />
+                </a>
+                <a :href="thing.public_url" class="text-decoration-none">
+                    <span class="thing-card__headerTitle text-muted">
+                        {{ thing.name }}
+                    </span>
+                </a>
+            </div>
+            <a :href="thing.public_url" class="thing-card__bodyWrapper">
+                <img :src="thing.thumbnail" alt="make card" />
+            </a>
+            <div
+                class="thing-card__actions bg-white d-flex align-items-center bg-white"
+            >
+                <div class="thing-card__actionsLeftContainer p-0 col-8">
+                    <div class="item-container">
                         <a
                             href="javascript:void(0);"
-                            class="contentItem text-muted text-decoration-none"
-                            @click="toggleLike(thing.id)"
+                            class="text-decoration-none text-muted"
                         >
-                            <template v-if="!isLikedMethod(thing.id)">
-                                <font-awesome-icon icon="fa-regular fa-heart" />
-                                {{ thing.like_count }}
-                            </template>
-                            <template v-else>
-                                <font-awesome-icon icon="fa-solid fa-heart" />
-                                {{ thing.like_count + 1 }}
-                            </template>
+                            <font-awesome-icon icon="fa-solid fa-plus" />
+                            Collect Thing
                         </a>
                     </div>
                 </div>
-                <div>
-                    <div class="item-container py-2">
-                        <a
-                            href="javascript:void(0);"
-                            class="contentItem text-muted text-decoration-none"
-                            @click="toggleShare"
-                        >
-                            <font-awesome-icon
-                                icon="fa-solid fa-arrow-up-from-bracket"
-                            />
-                            Share
-                        </a>
+                <div
+                    class="thing-card__actionsRightContainer p-0 col-4 border-start"
+                >
+                    <div class="border-bottom">
+                        <div class="item-container py-2">
+                            <a
+                                href="javascript:void(0);"
+                                class="contentItem text-muted text-decoration-none"
+                                @click="toggleLike(thing.id)"
+                            >
+                                <template v-if="!isLikedMethod(thing.id)">
+                                    <font-awesome-icon
+                                        icon="fa-regular fa-heart"
+                                    />
+                                    {{ thing.like_count }}
+                                </template>
+                                <template v-else>
+                                    <font-awesome-icon
+                                        icon="fa-solid fa-heart"
+                                    />
+                                    {{ thing.like_count + 1 }}
+                                </template>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="item-container py-2">
+                            <a
+                                href="javascript:void(0);"
+                                class="contentItem text-muted text-decoration-none"
+                                @click="toggleShare"
+                            >
+                                <font-awesome-icon
+                                    icon="fa-solid fa-arrow-up-from-bracket"
+                                />
+                                Share
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <TitleList /> -->
+    <v-pagination
+        v-model="page"
+        :pages="pageCount"
+        :range-size="1"
+        active-color="#DCEDFF"
+        @update:modelValue="updateHandler"
+        class="justify-content-center"
+    />
 </template>
 
 <style lang="scss">
@@ -163,8 +206,8 @@ export default {
             // height: 40px;
             // width: 300px;
 
-            &Avatar{
-                img{
+            &Avatar {
+                img {
                     width: 30px;
                     border-radius: 50%;
                 }

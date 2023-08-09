@@ -1,34 +1,15 @@
 <script>
 import ThingCard from "./ThingCard.vue";
-import Pagination from "./Pagination.vue";
+import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import Social from "./Social.vue";
 export default {
-    components: { ThingCard, Pagination, Social },
+    components: { ThingCard, Social },
 };
 </script>
 
 <template>
-    <div class="search-result my-3 d-grid align-items-center flex-wrap justify-content-center">
-        <ThingCard />
-        <!-- <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard />
-        <ThingCard /> -->
-    </div>
-    <Pagination />
+    <ThingCard />
+
     <Social />
 </template>
 
