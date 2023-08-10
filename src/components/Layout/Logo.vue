@@ -1,6 +1,16 @@
+<script>
+export default {
+    methods: {
+        reloadPage() {
+            location.reload()
+        },
+    },
+};
+</script>
+
 <template>
     <div class="navbar-logo">
-        <a href="#" class="navbar-brand">
+        <a href="#app" class="navbar-brand" @click="reloadPage">
             <!-- UltiMaker Thingiverse -->
 
             <img

@@ -1,8 +1,9 @@
 <script>
 // import TitleList from "../API/TitleList.vue";
 import axios from "axios";
-
 import VPagination from "@hennge/vue3-pagination";
+
+import { useThingStore } from "@/stores/thingStore";
 
 export default {
     data() {
@@ -23,13 +24,20 @@ export default {
 
     computed: {
         filteredThings() {
-            return this.things.slice(this.startIndex, this.endIndex);
+            const thingStore = useThingStore();
+            return thingStore.getFilteredThings.slice(this.startIndex, this.endIndex);
+
         },
 
         pageCount() {
-            return Math.ceil(this.things.length / this.numberOfCards);
+            const thingStore = useThingStore();
+
+            return Math.ceil(
+                thingStore.filteredThings.length / this.numberOfCards
+            );
         },
     },
+
     mounted() {
         this.fetchThings();
         this.endIndex = this.numberOfCards;
@@ -59,6 +67,7 @@ export default {
 
         fetchThings() {
             const apiKey = process.env.VUE_APP_API_KEY;
+            // const url = process.env.VUE_APP_THINGS_URL;
             const headers = { Authorization: `Bearer ${apiKey}` };
 
             // Make an API call to fetch things from Thingiverse using Axios
@@ -78,6 +87,9 @@ export default {
                             public_url: item.creator.public_url,
                         },
                     }));
+                    const thingStore = useThingStore();
+                    thingStore.setThings(this.things);
+                    console.log(thingStore.setThings(this.things));
                 })
                 .catch((error) => {
                     console.error("Error fetching things:", error);
@@ -87,6 +99,7 @@ export default {
         updateHandler(page) {
             this.startIndex = this.numberOfCards * page - this.numberOfCards;
             this.endIndex = this.numberOfCards * page;
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         },
     },
 };
