@@ -1,5 +1,12 @@
 <script>
-export default {};
+export default {
+    methods: {
+        closeCollect() {
+            const isClosed = true;
+            this.$emit("closeCollect", isClosed)
+        },
+    },
+};
 </script>
 
 <template>
@@ -28,8 +35,10 @@ export default {};
                 </select>
             </div>
         </div>
-        <div class="collect-thing_footer flex-grow-1 d-flex flex-column-reverse">
-            <button class="btn btn-warning ">Save to Collection</button>
+        <div
+            class="collect-thing_footer flex-grow-1 d-flex flex-column-reverse"
+        >
+            <button class="btn">Save to Collection</button>
         </div>
     </div>
 </template>
@@ -38,11 +47,10 @@ export default {};
 .collect-thing {
     width: 300px;
     height: 352px;
-    background: var(--thing-blue) !important;
-    opacity: 0.8;
+    background: rgba(25, 110, 240, 0.8) !important;
 
     * {
-        background: inherit !important;
+        background: rgba(25, 110, 240, 0) !important;
     }
 
     &_header {
@@ -56,10 +64,26 @@ export default {};
         p {
             font-size: 13px;
         }
+
+        .custom-select {
+            display: flex;
+            height: 35px;
+            border-radius: 2px;
+            overflow: hidden;
+
+            select {
+                box-shadow: none;
+                flex: 1;
+                padding: 0 5px;
+                color: #fff;
+                background-color: #10469c !important;
+                cursor: pointer;
+            }
+        }
     }
 
-    &_footer{
-        button{
+    &_footer {
+        button {
             background: #fff !important;
             opacity: 1 !important;
         }

@@ -108,10 +108,10 @@ export default {
             return item ? item.value : false;
         },
 
-        closeCollect(thingId) {
+        closeCollect(thingId, status) {
             const item = this.isCollected.find((item) => item.id === thingId);
             if (item) {
-                item.value = false;
+                item.value = status;
             }
         },
 
@@ -159,8 +159,11 @@ export default {
             v-for="thing in filteredThings"
             :key="thing.id"
         >
-            <div v-if="!isCollectedMethod(thing.id)" class="collect-popUp position-absolute" @mouseleave="closeCollect(thing.id)">
-                <CollectThing />
+            <div
+                v-if="isCollectedMethod(thing.id)"
+                class="collect-popUp position-absolute"
+            >
+                <CollectThing @closeCollect="closeCollect(thing.id)" />
             </div>
             <div
                 v-if="isSharedMethod(thing.id)"
@@ -234,6 +237,7 @@ export default {
                                 href="javascript:void(0);"
                                 class="contentItem text-muted text-decoration-none"
                                 @click="toggleShare(thing.id)"
+                                
                             >
                                 <font-awesome-icon
                                     icon="fa-solid fa-arrow-up-from-bracket"
