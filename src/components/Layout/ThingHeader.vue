@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand bg-thing-blue">
+    <header class="navbar navbar-expand bg-thing-blue">
         <div class="inner-navbar container-fluid d-flex flex-wrap">
             <!-- Navbar Logo -->
             <Logo />
@@ -20,7 +20,7 @@ export default {
             <!-- Header Links -->
             <HeaderLinks />
         </div>
-    </nav>
+    </header>
 </template>
 
 <style lang="scss">

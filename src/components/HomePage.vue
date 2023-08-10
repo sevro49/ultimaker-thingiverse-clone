@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-    <div class="layout-wrapper bg-light">
+    <content class="layout-wrapper bg-light">
         <div class="layout my-3 mx-auto">
             <div class="home-page">
                 <SearchControl />
@@ -23,7 +23,7 @@ export default {
                 <BacktoTop />
             </div>
         </div>
-    </div>
+    </content>
 </template>
 
 <style></style>

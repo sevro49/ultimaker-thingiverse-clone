@@ -17,9 +17,6 @@ export default {
                     .toLowerCase()
                     .includes(this.searchQuery.toLowerCase())
             );
-            
-            console.log("pressed enter");
-            console.log(this.filteredThings);
         },
     },
 };

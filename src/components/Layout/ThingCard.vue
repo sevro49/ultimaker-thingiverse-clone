@@ -4,6 +4,9 @@ import axios from "axios";
 import VPagination from "@hennge/vue3-pagination";
 
 import { useThingStore } from "@/stores/thingStore";
+const apiKey = process.env.VUE_APP_API_KEY;
+const fetchThingsUrl = process.env.VUE_APP_THINGS_URL;
+const headers = { Authorization: `Bearer ${apiKey}` };
 
 export default {
     data() {
@@ -25,8 +28,10 @@ export default {
     computed: {
         filteredThings() {
             const thingStore = useThingStore();
-            return thingStore.getFilteredThings.slice(this.startIndex, this.endIndex);
-
+            return thingStore.getFilteredThings.slice(
+                this.startIndex,
+                this.endIndex
+            );
         },
 
         pageCount() {
@@ -66,13 +71,9 @@ export default {
         },
 
         fetchThings() {
-            const apiKey = process.env.VUE_APP_API_KEY;
-            // const url = process.env.VUE_APP_THINGS_URL;
-            const headers = { Authorization: `Bearer ${apiKey}` };
-
             // Make an API call to fetch things from Thingiverse using Axios
             axios
-                .get("https://api.thingiverse.com/things", { headers })
+                .get(`${fetchThingsUrl}`, { headers })
                 .then((response) => {
                     this.things = response.data.map((item) => ({
                         id: item.id,
@@ -89,7 +90,6 @@ export default {
                     }));
                     const thingStore = useThingStore();
                     thingStore.setThings(this.things);
-                    console.log(thingStore.setThings(this.things));
                 })
                 .catch((error) => {
                     console.error("Error fetching things:", error);
