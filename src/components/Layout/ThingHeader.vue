@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <header class="navbar navbar-expand bg-thing-blue position-fixed w-100 top-0">
+    <header class="navbar navbar-expand bg-thing-blue position-sticky w-100 top-0">
         <div class="inner-navbar container-fluid d-flex flex-wrap">
             <!-- Navbar Logo -->
             <Logo />
