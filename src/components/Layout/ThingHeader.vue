@@ -25,6 +25,7 @@ export default {
 
 <style lang="scss">
 .navbar {
+    z-index: 100;
     .navbar-brand,
     .navbar-content a,
     .navbar-search input::placeholder {

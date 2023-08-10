@@ -94,7 +94,7 @@ export default {
                 </div>
                 <div>
                     <li class="nav-item ms-2">
-                        <a href="#" class="nav-link p-0">Education</a>
+                        <a href="https://www.thingiverse.com/education" class="nav-link p-0" target="_blank">Education</a>
                     </li>
                 </div>
                 <div>

@@ -1,5 +1,6 @@
 <script>
 // import TitleList from "../API/TitleList.vue";
+import SocialShare from "../Layout/SocialShare.vue";
 import axios from "axios";
 import VPagination from "@hennge/vue3-pagination";
 
@@ -12,7 +13,7 @@ export default {
     data() {
         return {
             isLiked: [],
-            isShared: false,
+            isShared: [],
             things: [],
             startIndex: 0,
             numberOfCards: 9,
@@ -22,7 +23,7 @@ export default {
     },
 
     components: {
-        VPagination,
+        VPagination, SocialShare,
     },
 
     computed: {
@@ -66,9 +67,30 @@ export default {
             return item ? item.value : false;
         },
 
-        toggleShare() {
-            this.isShared = !this.isShared;
+        toggleShare(thingId) {
+            const item = this.isShared.find((item) => item.id === thingId);
+            if (item) {
+                item.value = !item.value;
+                console.log(this.isSharedMethod(thingId).value)
+            } else {
+                // If the item doesn't exist in the array, add it
+                this.isShared.push({ id: thingId, value: true });
+                console.log(this.isSharedMethod)
+
+            }
         },
+
+        isSharedMethod(thingId) {
+            const item = this.isShared.find((item) => item.id === thingId);
+            return item ? item.value : false;
+        },
+
+        closeShare(thingId){
+            const item = this.isShared.find((item) => item.id === thingId);
+            if(item) {
+                item.value = false;
+            }
+        }, 
 
         fetchThings() {
             // Make an API call to fetch things from Thingiverse using Axios
@@ -110,11 +132,13 @@ export default {
         class="search-result my-3 d-grid align-items-center flex-wrap justify-content-center"
     >
         <div
-            class="thing-card shadow"
+            class="thing-card shadow position-relative"
             v-for="thing in filteredThings"
             :key="thing.id"
         >
-            <div class="share-popUp"></div>
+            <div v-if="isSharedMethod(thing.id)" class="share-popUp position-absolute" @mouseleave="closeShare(thing.id)">
+                <SocialShare />
+            </div>
             <div
                 class="thing-card__header d-flex py-2 px-3 align-items-center bg-white overflow-hidden"
             >
@@ -178,7 +202,8 @@ export default {
                             <a
                                 href="javascript:void(0);"
                                 class="contentItem text-muted text-decoration-none"
-                                @click="toggleShare"
+                                @click="toggleShare(thing.id)"
+                                
                             >
                                 <font-awesome-icon
                                     icon="fa-solid fa-arrow-up-from-bracket"
@@ -213,6 +238,10 @@ export default {
         max-width: 300px;
         div > * {
             background: #fff;
+        }
+
+        .share-popUp{
+            right: -20px;
         }
 
         &__header {

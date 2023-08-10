@@ -42,24 +42,28 @@ export default {
 </template>
 
 <style lang="scss">
-.search-control-dropdown {
-    border: 1px solid var(--thing-blue);
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.search-control-sort{
+    z-index: 25;
 
-    .dropdown-items {
+    .search-control-dropdown {
+        border: 1px solid var(--thing-blue);
+        width: 300px;
         display: flex;
-        flex-direction: column;
-        z-index: 1000;
-
-        a {
-            color: #333;
-            text-decoration: none;
-
-            &:hover {
-                color: var(--thing-blue);
+        align-items: center;
+        justify-content: space-between;
+    
+        .dropdown-items {
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+    
+            a {
+                color: #333;
+                text-decoration: none;
+    
+                &:hover {
+                    color: var(--thing-blue);
+                }
             }
         }
     }

@@ -20,12 +20,12 @@ export default {
                 />
             </a>
             <div class="footer-row_links">
-                <a href="">About Thingiverse ®</a>
-                <a href="">Legal</a>
-                <a href="">Privacy Policy</a>
-                <a href="">Contact Us</a>
-                <a href="">Developers</a>
-                <a href="">Changelogs</a>
+                <a href="https://www.thingiverse.com/about" target="_blank">About Thingiverse ®</a>
+                <a href="https://www.thingiverse.com/legal" target="_blank">Legal</a>
+                <a href="https://www.makerbot.com/legal/privacy/" target="_blank">Privacy Policy</a>
+                <a href="https://www.thingiverse.com/support" target="_blank">Contact Us</a>
+                <a href="https://www.thingiverse.com/developers" target="_blank">Developers</a>
+                <a href="https://www.thingiverse.com/changelog" target="_blank">Changelogs</a>
             </div>
         </div>
         <div class="footer-copyright mt-3">
