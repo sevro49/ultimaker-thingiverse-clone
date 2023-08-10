@@ -16,9 +16,10 @@ export default {};
 <style lang="scss">
 #backtotop {
     border: 2px solid white;
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
+    position: sticky;
+    float: right;
+    right: 10px;
+    bottom: 10px;
     transition: all 0.3s ease;
 
     &:hover {

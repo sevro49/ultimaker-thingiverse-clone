@@ -2,17 +2,21 @@
     <ThingHeader />
     
     <HomePage />
+
+    <ThingFooter />
 </template>
 
 <script>
 import HomePage from "./components/HomePage.vue";
 import ThingHeader from "./components/Layout/ThingHeader.vue";
+import ThingFooter from "./components/Layout/ThingFooter.vue"
 
 export default {
     name: "App",
     components: {
         HomePage,
         ThingHeader,
+        ThingFooter
     },
 };
 </script>
