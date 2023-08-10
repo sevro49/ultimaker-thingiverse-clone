@@ -1,6 +1,7 @@
 <script>
 // import TitleList from "../API/TitleList.vue";
 import SocialShare from "../Layout/SocialShare.vue";
+import CollectThing from "../Layout/CollectThing.vue";
 import axios from "axios";
 import VPagination from "@hennge/vue3-pagination";
 
@@ -14,6 +15,7 @@ export default {
         return {
             isLiked: [],
             isShared: [],
+            isCollected: [],
             things: [],
             startIndex: 0,
             numberOfCards: 9,
@@ -23,7 +25,9 @@ export default {
     },
 
     components: {
-        VPagination, SocialShare,
+        VPagination,
+        SocialShare,
+        CollectThing,
     },
 
     computed: {
@@ -71,12 +75,9 @@ export default {
             const item = this.isShared.find((item) => item.id === thingId);
             if (item) {
                 item.value = !item.value;
-                console.log(this.isSharedMethod(thingId).value)
             } else {
                 // If the item doesn't exist in the array, add it
                 this.isShared.push({ id: thingId, value: true });
-                console.log(this.isSharedMethod)
-
             }
         },
 
@@ -85,12 +86,34 @@ export default {
             return item ? item.value : false;
         },
 
-        closeShare(thingId){
+        closeShare(thingId) {
             const item = this.isShared.find((item) => item.id === thingId);
-            if(item) {
+            if (item) {
                 item.value = false;
             }
-        }, 
+        },
+
+        toggleCollect(thingId) {
+            const item = this.isCollected.find((item) => item.id === thingId);
+            if (item) {
+                item.value = !item.value;
+            } else {
+                // If the item doesn't exist in the array, add it
+                this.isCollected.push({ id: thingId, value: true });
+            }
+        },
+
+        isCollectedMethod(thingId) {
+            const item = this.isCollected.find((item) => item.id === thingId);
+            return item ? item.value : false;
+        },
+
+        closeCollect(thingId) {
+            const item = this.isCollected.find((item) => item.id === thingId);
+            if (item) {
+                item.value = false;
+            }
+        },
 
         fetchThings() {
             // Make an API call to fetch things from Thingiverse using Axios
@@ -136,7 +159,14 @@ export default {
             v-for="thing in filteredThings"
             :key="thing.id"
         >
-            <div v-if="isSharedMethod(thing.id)" class="share-popUp position-absolute" @mouseleave="closeShare(thing.id)">
+            <div v-if="!isCollectedMethod(thing.id)" class="collect-popUp position-absolute" @mouseleave="closeCollect(thing.id)">
+                <CollectThing />
+            </div>
+            <div
+                v-if="isSharedMethod(thing.id)"
+                class="share-popUp position-absolute"
+                @mouseleave="closeShare(thing.id)"
+            >
                 <SocialShare />
             </div>
             <div
@@ -166,6 +196,7 @@ export default {
                         <a
                             href="javascript:void(0);"
                             class="text-decoration-none text-muted"
+                            @click="toggleCollect(thing.id)"
                         >
                             <font-awesome-icon icon="fa-solid fa-plus" />
                             Collect Thing
@@ -203,7 +234,6 @@ export default {
                                 href="javascript:void(0);"
                                 class="contentItem text-muted text-decoration-none"
                                 @click="toggleShare(thing.id)"
-                                
                             >
                                 <font-awesome-icon
                                     icon="fa-solid fa-arrow-up-from-bracket"
@@ -240,7 +270,7 @@ export default {
             background: #fff;
         }
 
-        .share-popUp{
+        .share-popUp {
             right: -20px;
         }
 
