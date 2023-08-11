@@ -1,7 +1,7 @@
 <script>
-import SearchControl from "./Layout/SearchControl.vue";
-import HomePageContent from "./Layout/HomePageContent.vue";
-import BacktoTop from "./Layout/BacktoTop.vue";
+import SearchControl from "../components/Layout/SearchControl.vue";
+import HomePageContent from "../components/Layout/HomePageContent.vue";
+import BacktoTop from "../components/Layout/BacktoTop.vue";
 
 export default {
     components: {

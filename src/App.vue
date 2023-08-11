@@ -1,22 +1,23 @@
 <template>
     <ThingHeader />
-    
-    <HomePage />
+
+    <router-link to="/">
+    </router-link>
+
+    <router-view />
 
     <ThingFooter />
 </template>
 
 <script>
-import HomePage from "./components/HomePage.vue";
 import ThingHeader from "./components/Layout/ThingHeader.vue";
-import ThingFooter from "./components/Layout/ThingFooter.vue"
+import ThingFooter from "./components/Layout/ThingFooter.vue";
 
 export default {
     name: "App",
     components: {
-        HomePage,
         ThingHeader,
-        ThingFooter
+        ThingFooter,
     },
 };
 </script>
@@ -25,6 +26,10 @@ export default {
 :root {
     --thing-blue: #196ef0;
     --thing-dark-blue: #10469c;
+}
+
+a {
+    text-decoration: none !important;
 }
 
 .bg-thing-blue {

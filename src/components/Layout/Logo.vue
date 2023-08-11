@@ -1,16 +1,8 @@
-<script>
-export default {
-    methods: {
-        reloadPage() {
-            location.reload()
-        },
-    },
-};
-</script>
-
 <template>
     <div class="navbar-logo">
-        <a href="#app" class="navbar-brand" @click="reloadPage">
+        <router-link 
+        to="/"
+        class="navbar-brand">
             <!-- UltiMaker Thingiverse -->
 
             <img
@@ -24,7 +16,7 @@ export default {
                 src="../../assets/ultimaker-thingiverse-logo2.png"
                 alt=""
             />
-        </a>
+        </router-link>
     </div>
 </template>
 

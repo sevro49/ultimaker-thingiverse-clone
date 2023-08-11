@@ -2,6 +2,7 @@ import { createPinia } from "pinia";
 import { createApp } from "vue";
 import App from "./App.vue";
 import Dropdown from "./components/Forms/Dropdown.vue";
+import router from './router/index.js';
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -20,4 +21,4 @@ const app = createApp(App);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.component("Dropdown", Dropdown);
-app.use(createPinia()).mount("#app");
+app.use(createPinia()).use(router).mount("#app");

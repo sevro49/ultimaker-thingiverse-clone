@@ -1,14 +1,10 @@
 <script>
-// import TitleList from "../API/TitleList.vue";
 import SocialShare from "../Layout/SocialShare.vue";
 import CollectThing from "../Layout/CollectThing.vue";
-import axios from "axios";
 import VPagination from "@hennge/vue3-pagination";
 
 import { useThingStore } from "@/stores/thingStore";
-const apiKey = process.env.VUE_APP_API_KEY;
-const fetchThingsUrl = process.env.VUE_APP_THINGS_URL;
-const headers = { Authorization: `Bearer ${apiKey}` };
+import { fetchThings } from "../API/FetchThings.js";
 
 export default {
     data() {
@@ -48,9 +44,13 @@ export default {
         },
     },
 
-    mounted() {
-        this.fetchThings();
-        this.endIndex = this.numberOfCards;
+    async mounted() {
+        try {
+            this.things = await fetchThings();
+            this.endIndex = this.numberOfCards;
+        } catch (error) {
+            console.error("Error fetching things:", error);
+        }
     },
 
     methods: {
@@ -115,32 +115,6 @@ export default {
             }
         },
 
-        fetchThings() {
-            // Make an API call to fetch things from Thingiverse using Axios
-            axios
-                .get(`${fetchThingsUrl}`, { headers })
-                .then((response) => {
-                    this.things = response.data.map((item) => ({
-                        id: item.id,
-                        name: item.name,
-                        thumbnail: item.thumbnail,
-                        public_url: item.public_url,
-                        like_count: item.like_count,
-                        creator: {
-                            id: item.creator.id,
-                            name: item.creator.name,
-                            thumbnail: item.creator.thumbnail,
-                            public_url: item.creator.public_url,
-                        },
-                    }));
-                    const thingStore = useThingStore();
-                    thingStore.setThings(this.things);
-                })
-                .catch((error) => {
-                    console.error("Error fetching things:", error);
-                });
-        },
-
         updateHandler(page) {
             this.startIndex = this.numberOfCards * page - this.numberOfCards;
             this.endIndex = this.numberOfCards * page;
@@ -182,15 +156,20 @@ export default {
                     <!-- <font-awesome-icon icon="fa-solid fa-user" /> -->
                     <img :src="thing.creator.thumbnail" alt="" />
                 </a>
-                <a :href="thing.public_url" class="text-decoration-none">
+                <router-link
+                    :to="{ name: 'CardDetails', params: { id: thing.id } }"
+                >
                     <span class="thing-card__headerTitle text-muted">
                         {{ thing.name }}
                     </span>
-                </a>
+                </router-link>
             </div>
-            <a :href="thing.public_url" class="thing-card__bodyWrapper">
+            <router-link
+                :to="{ name: 'CardDetails', params: { id: thing.id } }"
+                class="thing-card__bodyWrapper"
+            >
                 <img :src="thing.thumbnail" alt="make card" />
-            </a>
+            </router-link>
             <div
                 class="thing-card__actions bg-white d-flex align-items-center bg-white"
             >
@@ -237,7 +216,6 @@ export default {
                                 href="javascript:void(0);"
                                 class="contentItem text-muted text-decoration-none"
                                 @click="toggleShare(thing.id)"
-                                
                             >
                                 <font-awesome-icon
                                     icon="fa-solid fa-arrow-up-from-bracket"

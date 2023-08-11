@@ -1,24 +1,14 @@
-<script>
-export default {
-    methods: {
-        reloadPage() {
-            location.reload();
-        },
-    },
-};
-</script>
-
 <template>
     <footer class="border-top p-4 mt-5">
         <div
             class="footer-row d-flex align-items-center justify-content-between"
         >
-            <a href="#app" class="footer-row_logo" @click="reloadPage">
+            <router-link to="/" class="footer-row_logo" >
                 <img
                     src="../../assets/ultimaker-thingiverse-logo-footer.png"
                     alt=""
                 />
-            </a>
+            </router-link>
             <div class="footer-row_links">
                 <a href="https://www.thingiverse.com/about" target="_blank">About Thingiverse ®</a>
                 <a href="https://www.thingiverse.com/legal" target="_blank">Legal</a>
