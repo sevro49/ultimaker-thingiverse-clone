@@ -3,7 +3,7 @@ export default {};
 </script>
 
 <template>
-    <div class="socialShare-icons__wrapper position-relative">
+    <div class="socialShareThings-icons__wrapper position-relative">
         <p class="text-start p-2 fw-bold mb-0">Share this thing!</p>
         <div class="socialShare-icons">
             <a href="https://www.facebook.com/" target="blank">
@@ -31,7 +31,7 @@ export default {};
 </template>
 
 <style lang="scss">
-.socialShare-icons__wrapper {
+.socialShareThings-icons__wrapper {
     width: 220px;
     height: 100px;
     z-index: 20;
